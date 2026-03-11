@@ -132,9 +132,10 @@ async function main() {
     await collection.addItems(items) // addItems performs an upsert by id
 
     // ── Publish & deploy ──────────────────────────────────────────────────
-    console.log("🚀 Publishing & deploying…")
-    await framer.publish()
-    await framer.deploy()
+    console.log("🚀 Publishing…")
+    const { deployment } = await framer.publish()
+    console.log(`🌐 Deploying (id: ${deployment.id})…`)
+    await framer.deploy(deployment.id)
 
     console.log("🎉 Sync complete!")
   } finally {
