@@ -18,11 +18,26 @@ const schema = JSON.parse(fs.readFileSync(schemaPath, "utf-8"))
 const validate = ajv.compile(schema)
 
 const vendorsDir = path.resolve("./vendors")
-const files = fs
-  .readdirSync(vendorsDir)
+const allVendorEntries = fs.readdirSync(vendorsDir)
+const files = allVendorEntries
   .filter((f) => f.endsWith(".json") && !f.startsWith("_")) // skip _schema.json, _example.json, etc.
 
 let errors = 0
+
+// Guardrail: reject unexpected non-JSON vendor files (e.g. missing .json extension)
+for (const file of allVendorEntries) {
+  if (file.startsWith("_")) continue
+  if (!file.endsWith(".json")) {
+    console.error(`❌ ${file} — Invalid vendor filename. Vendor files must end with .json`)
+    errors++
+    continue
+  }
+
+  if (!/^[a-zA-Z0-9_-]+\.json$/.test(file)) {
+    console.error(`❌ ${file} — Invalid vendor filename. Use only letters, numbers, hyphens, or underscores`) // no spaces or extra dots
+    errors++
+  }
+}
 
 for (const file of files) {
   const filePath = path.join(vendorsDir, file)
