@@ -94,7 +94,7 @@ Paste this example, then replace the sample details with your own shop details:
 A few notes:
 - `description` is optional, but recommended
 - leave `active` as `true`
-- for social links, use the full URL or leave the field empty: `""`
+- for website and social links, use full HTTPS URLs or leave social fields empty: `""`
 
 Valid regions:
 `Europe` · `North America` · `South America` · `Asia Pacific` · `Middle East` · `Africa` · `India`

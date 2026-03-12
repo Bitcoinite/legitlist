@@ -27,7 +27,8 @@
     "website": {
       "type": "string",
       "format": "uri",
-      "description": "Full URL of the vendor's website"
+      "pattern": "^https://",
+      "description": "Full HTTPS URL of the vendor's website"
     },
     "region": {
       "type": "string",
@@ -67,11 +68,12 @@
       "additionalProperties": false,
       "properties": {
         "x": {
-          "description": "Full URL to X (Twitter) profile, or empty string to omit",
+          "description": "Full HTTPS URL to X (Twitter) profile, or empty string to omit",
           "oneOf": [
             {
               "type": "string",
-              "format": "uri"
+              "format": "uri",
+              "pattern": "^https://"
             },
             {
               "type": "string",
@@ -80,11 +82,12 @@
           ]
         },
         "instagram": {
-          "description": "Full URL to Instagram profile, or empty string to omit",
+          "description": "Full HTTPS URL to Instagram profile, or empty string to omit",
           "oneOf": [
             {
               "type": "string",
-              "format": "uri"
+              "format": "uri",
+              "pattern": "^https://"
             },
             {
               "type": "string",
@@ -93,11 +96,12 @@
           ]
         },
         "youtube": {
-          "description": "Full URL to YouTube channel, or empty string to omit",
+          "description": "Full HTTPS URL to YouTube channel, or empty string to omit",
           "oneOf": [
             {
               "type": "string",
-              "format": "uri"
+              "format": "uri",
+              "pattern": "^https://"
             },
             {
               "type": "string",

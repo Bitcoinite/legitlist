@@ -8,6 +8,9 @@ on:
       - "logos/**"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 concurrency:
   group: sync-vendors-main
   cancel-in-progress: false
