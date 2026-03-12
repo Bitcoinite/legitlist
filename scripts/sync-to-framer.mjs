@@ -18,8 +18,11 @@ import path from "node:path"
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
+const ASSET_REF =
+  process.env.LEGITLIST_ASSET_REF || process.env.GITHUB_SHA || "main"
+
 const LOGO_BASE =
-  "https://cdn.jsdelivr.net/gh/bitaxeorg/legitlist@main/"
+  `https://cdn.jsdelivr.net/gh/bitaxeorg/legitlist@${ASSET_REF}/`
 
 const COLLECTION_NAME = "Vendors"
 
@@ -162,6 +165,8 @@ async function main() {
   const framer = await connect(FRAMER_PROJECT_URL, FRAMER_API_KEY)
 
   try {
+    console.log(`🖼️  Logo asset ref: ${ASSET_REF}`)
+
     // ── Get or create the Managed Collection ──────────────────────────────
     // getManagedCollection() (singular) relies on "active" session state that
     // is unreliable in server-side / CI runs. Use getManagedCollections()
